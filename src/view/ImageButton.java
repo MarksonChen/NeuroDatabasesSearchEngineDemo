@@ -14,6 +14,7 @@ public class ImageButton extends JButton {
         setBorderPainted(true);
         setContentAreaFilled(false);
         setFocusPainted(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setOpaque(false);
 
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));

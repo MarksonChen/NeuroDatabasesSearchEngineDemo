@@ -1,5 +1,5 @@
 package use_case.open_frame;
 
 public interface OpenFrameInputBoundary {
-    void execute(OpenFrameInputData switchViewInputData);
+    void execute(String viewName);
 }

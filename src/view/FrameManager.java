@@ -22,11 +22,12 @@ public class FrameManager implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("view")) {
+        if (evt.getPropertyName().equals(FrameManagerModel.OPEN)) {
             String frameName = (String) evt.getNewValue();
             JFrame frame = frames.get(frameName);
-            frame.setLocation(MouseInfo.getPointerInfo().getLocation());
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
+            frame.toFront();
         }
     }
 }

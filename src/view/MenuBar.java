@@ -1,31 +1,31 @@
 package view;
 
 import interface_adapter.open_frame.OpenFrameController;
-import interface_adapter.switch_view.SwitchViewController;
+import interface_adapter.open_website.OpenWebsiteController;
 import interface_adapter.view_model.HistoryViewModel;
-import interface_adapter.view_model.MenuBarViewModel;
+import interface_adapter.view_model.MainFrameViewModel;
 import interface_adapter.view_model.StarredViewModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 public class MenuBar extends JMenuBar {
-    private final MenuBarViewModel menuBarViewModel;
+    private final MainFrameViewModel mainFrameViewModel;
     private final OpenFrameController switchViewController;
+    private final OpenWebsiteController openWebsiteController;
     private JMenu starredMenu;
     private JMenu historyMenu;
     private JMenu helpMenu;
 
-    public MenuBar(MenuBarViewModel menuBarViewModel, OpenFrameController openFrameController) {
-        this.menuBarViewModel = menuBarViewModel;
+    public MenuBar(MainFrameViewModel mainFrameViewModel, OpenFrameController openFrameController, OpenWebsiteController openWebsiteController) {
+        this.mainFrameViewModel = mainFrameViewModel;
         this.switchViewController = openFrameController;
-        // Starred Menu
-        starredMenu = new JMenu("Starred");
+        this.openWebsiteController = openWebsiteController;
+
+        starredMenu = new JMenu(MainFrameViewModel.STARRED_MENU_BUTTON_LABEL);
         starredMenu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -34,8 +34,7 @@ public class MenuBar extends JMenuBar {
         });
         add(starredMenu);
 
-        // History Menu
-        historyMenu = new JMenu("History");
+        historyMenu = new JMenu(MainFrameViewModel.HISTORY_MENU_BUTTON_LABEL);
         historyMenu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -44,16 +43,11 @@ public class MenuBar extends JMenuBar {
         });
         add(historyMenu);
 
-        // Help Menu
         helpMenu = new JMenu("Help");
         helpMenu.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/MarksonChen/NeuroDatabasesSearchApp"));
-                } catch (Exception ignored) {
-                    // It is fine if it can't be opened
-                }
+                openWebsiteController.execute(MainFrameViewModel.HELP_REDIRECT_URL);
             }
         });
         add(helpMenu);

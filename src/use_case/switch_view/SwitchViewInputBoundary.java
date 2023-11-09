@@ -1,5 +1,5 @@
 package use_case.switch_view;
 
 public interface SwitchViewInputBoundary {
-    void execute(SwitchViewInputData switchViewInputData);
+    void execute(String viewName);
 }

@@ -8,7 +8,7 @@ public class OpenFrameInteractor implements OpenFrameInputBoundary {
     }
 
     @Override
-    public void execute(OpenFrameInputData switchViewInputData) {
-        openFramePresenter.openFrame(switchViewInputData.getViewName());
+    public void execute(String viewName) {
+        openFramePresenter.openFrame(viewName);
     }
 }

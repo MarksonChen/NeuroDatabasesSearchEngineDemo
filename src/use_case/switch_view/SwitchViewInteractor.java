@@ -8,7 +8,7 @@ public class SwitchViewInteractor implements SwitchViewInputBoundary{
     }
 
     @Override
-    public void execute(SwitchViewInputData switchViewInputData) {
-        switchViewPresenter.switchToView(switchViewInputData.getViewName());
+    public void execute(String viewName) {
+        switchViewPresenter.switchToView(viewName);
     }
 }
