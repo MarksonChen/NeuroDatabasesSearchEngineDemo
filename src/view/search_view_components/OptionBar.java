@@ -1,11 +1,12 @@
 package view.search_view_components;
 
 import data_access.Database;
-import interface_adapter.toggle_display_option.ToggleDisplayOptionController;
-import interface_adapter.view_model.SearchViewModel;
-import interface_adapter.view_model.SearchViewState;
+import use_case.toggle_display_option.ToggleDisplayOptionController;
+import view_model.SearchViewModel;
+import view_model.SearchViewState;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,22 +18,44 @@ public class OptionBar extends JPanel {
     public OptionBar(ToggleDisplayOptionController toggleDisplayOptionController, SearchViewModel searchViewModel) {
         this.toggleDisplayOptionController = toggleDisplayOptionController;
         this.searchViewModel = searchViewModel;
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        // The panels are not made until the String[][] EntryKey is passed from DAO by the "load from DAO" use case
+        setLayout(new GridBagLayout());
+        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        // The panels are not made until the LinkedHashMap<String, Boolean>[] entryDisplayedMap
+        // is passed from DAO by the "load from DAO" use case
     }
     public void makePanels() {
         removeAll();
         JPanel[] databasePanels = new JPanel[Database.length];
         String databaseOption = searchViewModel.getState().getDatabaseOption();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(24,0,0,0);
+
         if (databaseOption.equals(SearchViewModel.ALL_DATABASES)) {
             for (int i = 0; i < Database.length; i++) {
                 databasePanels[i] = makePanel(i);
-                add(databasePanels[i]);
+                add(databasePanels[i], gbc);
+                gbc.insets = new Insets(15,0,0,0);
+                gbc.gridy++;
             }
         } else {
             int databaseIndex = Database.indexOf(Database.valueOf(databaseOption));
             add(makePanel(databaseIndex));
+            gbc.gridy++;
         }
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1;
+        JPanel filler = new JPanel();
+        filler.setBackground(SearchViewModel.BACKGROUND_COLOR );
+        add(filler, gbc);
+        // This panel will stretch as much as possible
+        // so that the databasePanels are stacked from the top
+
         revalidate();
         repaint();
     }
@@ -40,6 +63,7 @@ public class OptionBar extends JPanel {
     private JPanel makePanel(int databaseIndex) {
         JPanel databasePanel = new JPanel();
         databasePanel.setLayout(new BoxLayout(databasePanel, BoxLayout.Y_AXIS));
+        databasePanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
 
         SearchViewState state = searchViewModel.getState();
         LinkedHashMap<String, Boolean>[] entryDisplayedMap = state.getDetailEntryDisplayed();

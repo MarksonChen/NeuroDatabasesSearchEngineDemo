@@ -1,12 +1,11 @@
 package view;
 
 import entity.Query;
-import interface_adapter.clear_history.ClearHistoryController;
-import interface_adapter.reuse_history_query.ReuseHistoryQueryController;
-import interface_adapter.switch_view.SwitchViewController;
-import interface_adapter.view_model.HistoryViewModel;
-import interface_adapter.view_model.SearchViewModel;
-import interface_adapter.view_model.StarredViewModel;
+import use_case.clear_history.ClearHistoryController;
+import use_case.reuse_history_query.ReuseHistoryQueryController;
+import use_case.switch_view.SwitchViewController;
+import view_model.HistoryViewModel;
+import view_model.SearchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +33,9 @@ public class HistoryView extends JFrame implements PropertyChangeListener {
         setLocationRelativeTo(null);
         pack();
 
+
         contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setLayout(new GridBagLayout());
         add(new JScrollPane(contentPanel));
 
         JMenu clearHistoryMenuButton = new JMenu(HistoryView.CLEAR_HISTORY_MENU_BUTTON_LABEL);
@@ -58,20 +58,37 @@ public class HistoryView extends JFrame implements PropertyChangeListener {
                 refresh();
                 JOptionPane.showMessageDialog(this, "History Cleared");
             }
+            case HistoryViewModel.CLOSE -> setVisible(false);
         }
     }
 
     private void refresh() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1;
+        gbc.weighty = 0;
+
         contentPanel.removeAll();
+
         List<Query> queryList = historyViewModel.getState().getHistoryQueryList();
         if (queryList.isEmpty()){
-            contentPanel.add(new JLabel(HistoryViewModel.EMPTY_MESSAGE));
+            contentPanel.add(new JLabel(HistoryViewModel.EMPTY_MESSAGE), gbc);
+        } else {
+            JLabel message = new JLabel(HistoryViewModel.GUIDE_MESSAGE);
+            message.setForeground(Color.gray);
+            contentPanel.add(message, gbc);
+            for (int i = queryList.size() - 1; i >= 0; i--) { // Last queried, first shown
+                HistoryQueryButton historyQueryButton = new HistoryQueryButton(queryList.get(i), reuseHistoryQueryController, switchViewController);
+                historyQueryButton.setFocusPainted(false);
+                contentPanel.add(historyQueryButton, gbc);
+            }
         }
-        for (int i = queryList.size() - 1; i >= 0; i--) { // Last queried, first shown
-            HistoryQueryButton historyQueryButton = new HistoryQueryButton(queryList.get(i), reuseHistoryQueryController, switchViewController);
-            contentPanel.add(historyQueryButton);
-            contentPanel.add(Box.createVerticalStrut(5));
-        }
+
+        gbc.weighty = 1;
+        contentPanel.add(new JLabel(), gbc);
+
         revalidate();
         repaint();
     }

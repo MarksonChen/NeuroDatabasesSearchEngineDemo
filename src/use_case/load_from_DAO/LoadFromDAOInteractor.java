@@ -1,7 +1,7 @@
 package use_case.load_from_DAO;
 
-import interface_adapter.view_model.SearchViewModel;
-import use_case.clear_history.HistoryDataAccessInterface;
+import view_model.SearchViewModel;
+import use_case.HistoryDataAccessInterface;
 import use_case.query.QueryDataAccessInterface;
 import use_case.star.StarDataAccessInterface;
 

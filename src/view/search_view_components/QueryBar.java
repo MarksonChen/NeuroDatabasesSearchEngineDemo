@@ -1,13 +1,13 @@
 package view.search_view_components;
 
 import data_access.Database;
-import interface_adapter.query.QueryAllController;
-import interface_adapter.query.QueryOneController;
-import interface_adapter.switch_results_panel.SwitchResultsPanelController;
-import interface_adapter.switch_view.SwitchViewController;
-import interface_adapter.view_model.SearchViewModel;
-import interface_adapter.view_model.SearchViewState;
-import interface_adapter.view_model.FrontPageViewModel;
+import use_case.query.query_all.QueryAllController;
+import use_case.query.query_one.QueryOneController;
+import use_case.switch_results_panel.SwitchResultsPanelController;
+import use_case.switch_view.SwitchViewController;
+import view_model.SearchViewModel;
+import view_model.SearchViewState;
+import view_model.FrontPageViewModel;
 import view.ImageButton;
 
 import javax.swing.*;
@@ -25,7 +25,6 @@ public class QueryBar extends JPanel {
     private JTextField searchField;
     private JButton searchButton;
     private JComboBox<String> databasesComboBox;
-//    private JSpinner resultsPerPageSpinner;
 
     public QueryBar(SearchViewModel searchViewModel, SwitchViewController switchViewController, SwitchResultsPanelController switchResultsPanelController, QueryAllController queryAllController, QueryOneController queryOneController) {
         this.searchViewModel = searchViewModel;
@@ -33,12 +32,13 @@ public class QueryBar extends JPanel {
         this.switchResultsPanelController = switchResultsPanelController;
         this.queryAllController = queryAllController;
         this.queryOneController = queryOneController;
-        switchViewButton = new JButton("ᐊ");
-        switchViewButton.setPreferredSize(new Dimension(30, 30));
+        switchViewButton = new JButton("ᐊ"); // or ❮
+        switchViewButton.setBorder(null);
+        switchViewButton.setPreferredSize(new Dimension(25, 25));
 
-        searchField = new JTextField(30);
-
-        searchButton = new ImageButton("/icons/magnifier.png", 0.04);
+//        searchField = new JTextField(30);
+        searchField = new HintTextField(SearchViewModel.SEARCH_FIELD_HINT, 40);
+        searchButton = new ImageButton(SearchViewModel.SEARCH_BUTTON_IMAGE_PATH, SearchViewModel.SEARCH_BUTTON_IMAGE_SCALE);
 
         String[] databaseNames = Database.getDatabaseNames();
 
@@ -47,19 +47,16 @@ public class QueryBar extends JPanel {
         System.arraycopy(databaseNames, 0, databaseOptions, 1, databaseNames.length);
         databasesComboBox = new JComboBox<>(databaseOptions);
 
-//        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(
-//                SearchViewModel.DEFAULT_RESULTS_PER_PAGE, 1, 20, 1); // Default to 10, min 1, max 20, step 1
-//        resultsPerPageSpinner = new JSpinner(spinnerModel);
-
         addListeners();
 
-        setLayout(new FlowLayout(FlowLayout.LEFT));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        setBackground(SearchViewModel.BACKGROUND_COLOR);
         add(switchViewButton);
+//        add(new JLabel("Search:"));
         add(searchField);
         add(searchButton);
         add(databasesComboBox);
-//        add(resultsPerPageSpinner);
-//        add(new JLabel("results per page"));
     }
     private void addListeners() {
         switchViewButton.addActionListener(e ->
@@ -86,11 +83,7 @@ public class QueryBar extends JPanel {
             currentState.setDatabaseOption(databaseOption);
             switchResultsPanelController.execute(databaseOption);
         });
-//        resultsPerPageSpinner.addChangeListener(e -> {
-//            SearchViewState currentState = searchViewModel.getState();
-//            currentState.setResultsPerPage((int) resultsPerPageSpinner.getValue());
-//            //TODO: real time change
-//        });
+
     }
     private static void performSearch(SearchViewModel searchViewModel, QueryAllController queryAllController, QueryOneController queryOneController){
         SearchViewState state = searchViewModel.getState();

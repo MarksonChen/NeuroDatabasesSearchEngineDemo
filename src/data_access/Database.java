@@ -17,4 +17,7 @@ public enum Database implements Serializable {
         return Arrays.asList(Database.values()).indexOf(database);
         // Not the optimal method but gets the job done
     }
+    public static Database get(int i) {
+        return Database.values()[i];
+    }
 }

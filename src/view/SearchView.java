@@ -1,13 +1,13 @@
 package view;
 
 import data_access.Database;
-import interface_adapter.query.QueryAllController;
-import interface_adapter.query.QueryOneController;
-import interface_adapter.switch_results_panel.SwitchResultsPanelController;
-import interface_adapter.switch_view.SwitchViewController;
-import interface_adapter.toggle_display_option.ToggleDisplayOptionController;
-import interface_adapter.view_model.SearchViewModel;
-import interface_adapter.view_model.SearchViewState;
+import use_case.query.query_all.QueryAllController;
+import use_case.query.query_one.QueryOneController;
+import use_case.switch_results_panel.SwitchResultsPanelController;
+import use_case.switch_view.SwitchViewController;
+import use_case.toggle_display_option.ToggleDisplayOptionController;
+import view_model.SearchViewModel;
+import view_model.SearchViewState;
 import view.search_view_components.*;
 
 import javax.swing.*;
@@ -40,12 +40,14 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 
         cardLayout = new CardLayout();
         resultsPanel.setLayout(cardLayout);
+        resultsPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        resultsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
 
-        Database[] databases = Database.values();
         singleViewResultsPanelsMap = new LinkedHashMap<>();
         for (int i = 0; i < tabbedViewResultPanels.length; i++) {
-            singleViewResultsPanelsMap.put(databases[i].name(), singleViewResultPanels[i]);
-            resultsPanel.add(singleViewResultPanels[i], databases[i].name());
+            String databaseName = Database.get(i).name();
+            singleViewResultsPanelsMap.put(databaseName, singleViewResultPanels[i]);
+            resultsPanel.add(singleViewResultPanels[i], databaseName);
         }
 
         tabbedView = new TabbedResultsPanel(tabbedViewResultPanels, this.searchViewModel, queryOneController);

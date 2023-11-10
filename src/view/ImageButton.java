@@ -1,23 +1,21 @@
 package view;
 
-import interface_adapter.view_model.FrontPageViewModel;
+import view_model.FrontPageViewModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
 
 public class ImageButton extends JButton {
     public ImageButton(String imagePath, double scale) {
         super(getScaledImageIcon(imagePath, scale));
-        setBorderPainted(true);
+//        setBorderPainted(true);
         setContentAreaFilled(false);
         setFocusPainted(false);
+        setRolloverEnabled(false);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        setOpaque(false);
-
-        setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+//        setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         setBackground(FrontPageViewModel.ACCENT_COLOR);
 
         // Draw a border when the mouse hovers above the image button

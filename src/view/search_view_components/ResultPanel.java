@@ -1,10 +1,10 @@
 package view.search_view_components;
 
 import entity.FetchedData;
-import interface_adapter.fill_detail.FillDetailController;
-import interface_adapter.open_website.OpenWebsiteController;
-import interface_adapter.star.StarController;
-import org.jetbrains.annotations.NotNull;
+import use_case.fill_detail.FillDetailController;
+import use_case.open_website.OpenWebsiteController;
+import use_case.star.StarController;
+import view_model.SearchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,41 +17,43 @@ public class ResultPanel extends JPanel {
     private final StarButton starButton;
     private JButton queryButton;
 
-    public ResultPanel(LinkedHashMap<String, Boolean> detailsDisplayed, FetchedData data, Boolean isStarred, FillDetailController fillDetailController, StarController starController, OpenWebsiteController openWebsiteController) {
+    public ResultPanel(SearchViewModel searchViewModel, LinkedHashMap<String, Boolean> detailsDisplayed, FetchedData data, Boolean isStarred, FillDetailController fillDetailController, StarController starController, OpenWebsiteController openWebsiteController) {
         this.detailsDisplayed = detailsDisplayed;
         starButton = new StarButton(isStarred);
         starButton.addActionListener(e -> {
             starController.execute(data);
         });
 
-        queryButton = new JButton("Query for details"); // TODO fetch from viewModel
+        queryButton = new JButton(searchViewModel.QUERY_BUTTON_LABEL);
+//        queryButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         queryButton.addActionListener(e -> {
             fillDetailController.execute(data);
         });
 
         OpenWebsiteTitleButton titleButton = new OpenWebsiteTitleButton(data.getTitle(), data.getURL(), openWebsiteController);
 
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
+//        titlePanel.setLayout(new BorderLayout());
+//        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        titlePanel.setComponentOrientation(
+                ComponentOrientation.LEFT_TO_RIGHT);
+
+        titlePanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
         titlePanel.add(starButton);
         titlePanel.add(titleButton);
         titlePanel.setAlignmentX(LEFT_ALIGNMENT);
 
         dataInfoPanel = new JPanel();
-        createDataInfoPanel(data);
-
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(titlePanel);
-        add(dataInfoPanel);
-        setBorder(BorderFactory.createRaisedBevelBorder());
-    }
-
-    @NotNull
-    private JPanel createDataInfoPanel(FetchedData data) {
+        dataInfoPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
         dataInfoPanel.setLayout(new BoxLayout(dataInfoPanel, BoxLayout.PAGE_AXIS));
         dataInfoPanel.setAlignmentX(LEFT_ALIGNMENT);
         updateDataInfoPanel(data);
-        return dataInfoPanel;
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        add(titlePanel);
+        add(dataInfoPanel);
+//        setBorder(BorderFactory.createRaisedBevelBorder());
     }
 
     public void updateDataInfoPanel(FetchedData data) {
@@ -59,30 +61,44 @@ public class ResultPanel extends JPanel {
         if (data.hasDetails()){
             displayDataDetails(data);
         } else {
-            dataInfoPanel.add(queryButton);
+            addQueryButtonPanel();
         }
         revalidate();
         repaint();
     }
 
+    private void addQueryButtonPanel() {
+        // The only way to add inset to a JButton inside a BorderLayout
+        // would be to place it in another JPanel and add insets
+        JPanel queryButtonPanel = new JPanel();
+        queryButtonPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        queryButtonPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,35,5,0);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1;
+        queryButtonPanel.add(queryButton, gbc);
+        dataInfoPanel.add(queryButtonPanel);
+    }
+
     private void displayDataDetails(FetchedData data) {
         for (Map.Entry<String, String> entry : data.getDetails().entrySet()) {
             if(detailsDisplayed.get(entry.getKey())) {
-                JTextArea dataLabel = createParagraphTextArea(entry.getKey() + ": " + entry.getValue());
-                dataInfoPanel.add(dataLabel); // TODO merge into one area
+                JTextArea dataLabel = new ParagraphTextArea(entry.getKey() + ": " + entry.getValue());
+                dataInfoPanel.add(dataLabel);
             }
         }
     }
 
-    private JTextArea createParagraphTextArea(String string) {
-        JTextArea textArea = new JTextArea(string);
-        textArea.setWrapStyleWord(true);
-        textArea.setLineWrap(true);
-//        textArea.setRows(rows);
-        textArea.setEditable(false);
-        textArea.setBackground(getBackground());
-        return textArea;
-    }
+//    private JTextArea createParagraphTextArea(String string) {
+//        JTextArea textArea = new JTextArea(string);
+//        textArea.setWrapStyleWord(true);
+//        textArea.setLineWrap(true);
+////        textArea.setRows(rows);
+//        textArea.setEditable(false);
+//        textArea.setBackground(SearchViewModel.BACKGROUND_COLOR);
+//        return textArea;
+//    }
 
     public void toggleStar(Boolean isStarred) {
         starButton.toggleStar(isStarred);

@@ -1,32 +1,24 @@
 package view;
 
-import interface_adapter.open_website.OpenWebsiteController;
-import interface_adapter.switch_view.SwitchViewController;
-import interface_adapter.view_model.SearchViewModel;
-import interface_adapter.view_model.FrontPageViewModel;
+import use_case.open_website.OpenWebsiteController;
+import use_case.switch_view.SwitchViewController;
+import view_model.SearchViewModel;
+import view_model.FrontPageViewModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URI;
 
 public class FrontPageView extends JPanel {
-
-    private final FrontPageViewModel frontPageViewModel;
-    private final SwitchViewController switchViewController;
-
     private final JButton appTitle, searchButton;
 
 
     public FrontPageView(FrontPageViewModel frontPageViewModel, SwitchViewController switchViewController, OpenWebsiteController openWebsiteController) {
-        this.frontPageViewModel = frontPageViewModel;
-        this.switchViewController = switchViewController;
-
-        appTitle        = new ImageButton(FrontPageViewModel.APP_TITLE_IMAGE_PATH, 0.35);
-        searchButton = new ImageButton(FrontPageViewModel.SEARCH_BUTTON_IMAGE_PATH, 0.35);
+        appTitle        = new ImageButton(FrontPageViewModel.TITLE_BUTTON_IMAGE_PATH, FrontPageViewModel.TITLE_BUTTON_IMAGE_SCALE);
+        searchButton = new ImageButton(FrontPageViewModel.SEARCH_BUTTON_IMAGE_PATH, FrontPageViewModel.SEARCH_BUTTON_IMAGE_SCALE);
 
         appTitle.addActionListener(evt -> {
             try {
-                openWebsiteController.execute("https://github.com/MarksonChen/NeuroDatabasesSearchApp");
+                openWebsiteController.execute(frontPageViewModel.TITLE_BUTTON_REDIRECT_URL);
             } catch (Exception ignored) {
                 // It's fine if it can't be opened
             }
@@ -47,7 +39,7 @@ public class FrontPageView extends JPanel {
         this.add(appTitle);
         this.add(Box.createVerticalStrut(20));
         this.add(searchPanel);
-        this.setBackground(Color.white);
-        searchPanel.setBackground(Color.white);
+        this.setBackground(FrontPageViewModel.BACKGROUND_COLOR);
+        searchPanel.setBackground(FrontPageViewModel.BACKGROUND_COLOR);
     }
 }

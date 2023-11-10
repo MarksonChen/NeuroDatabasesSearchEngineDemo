@@ -1,8 +1,8 @@
 package view.search_view_components;
 
 import data_access.Database;
-import interface_adapter.query.QueryOneController;
-import interface_adapter.view_model.SearchViewModel;
+import use_case.query.query_one.QueryOneController;
+import view_model.SearchViewModel;
 
 import javax.swing.*;
 
@@ -18,18 +18,10 @@ public class TabbedResultsPanel extends JTabbedPane {
         this.queryOneController = queryOneController;
         this.scrollResultsPanels = scrollResultsPanels;
 
-        Database[] databases = Database.values();
-        for (int i = 0; i < databases.length; i++) {
-            this.addTab(databases[i].name(), scrollResultsPanels[i]);
-        }
-//        for (Map.Entry<String, ScrollResultsPanel> entry: scrollResultsPanels.entrySet()){
-//            this.addTab(entry.getKey(), entry.getValue());
-//        }
-    }
+        setBackground(SearchViewModel.BACKGROUND_COLOR);
 
-//    public void updateOnePanel(List<FetchedData> fetchedData, int totalReults, int resultsPerPage) {
-//        scrollResultsPanels[i].displayData(fetchedData, totalReults, resultsPerPage);
-//        revalidate();
-//        repaint();
-//    }
+        for (int i = 0; i < Database.length; i++) {
+            this.addTab(Database.get(i).name(), scrollResultsPanels[i]);
+        }
+    }
 }

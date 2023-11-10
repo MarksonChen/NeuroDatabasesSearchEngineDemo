@@ -2,7 +2,7 @@ package use_case.query.query_all;
 
 import entity.FetchedData;
 import entity.Query;
-import use_case.clear_history.HistoryDataAccessInterface;
+import use_case.HistoryDataAccessInterface;
 import use_case.query.QueryDataAccessInterface;
 import use_case.star.StarDataAccessInterface;
 
@@ -24,20 +24,27 @@ public class QueryAllInteractor implements QueryAllInputBoundary {
 
     @Override
     public void execute(QueryAllInputData inputData) {
-        Query query = new Query(inputData.getKeywords());
+        String keywords = inputData.getKeywords();
+        Query query = new Query(keywords);
         if (query.getKeywords().trim().isEmpty()){
             queryAllPresenter.prepareFailView("Cannot search with empty query, please try again");
             return;
         }
+
+        historyDAO.add(query);
         try {
-            historyDAO.add(query);
             historyDAO.saveToFile();
+        } catch (IOException e) {
+            e.printStackTrace(); // No need to push an alert if this automatic process is not working
+        }
+
+        try {
             List<FetchedData>[] fetchedData = queryDAO.queryAll(query, inputData.getResultsPerPage(), 1);
             List<Boolean>[] starredStateListArr = starDAO.checkIfDataStarred(fetchedData);
-            QueryAllOutputData outputData = new QueryAllOutputData(inputData.getKeywords(), fetchedData, starredStateListArr, historyDAO.getHistoryQueryList(), queryDAO.getQueryAllTotalResults());
+            QueryAllOutputData outputData = new QueryAllOutputData(keywords, fetchedData, starredStateListArr, historyDAO.getHistoryQueryList(), queryDAO.getQueryAllTotalResults());
             queryAllPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
-            //TODO: prepare fail view
+            queryAllPresenter.prepareFailView("An error occured while fetching query for \"" + keywords + "\"");
         }
     }
 }

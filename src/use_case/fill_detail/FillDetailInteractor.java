@@ -23,7 +23,7 @@ public class FillDetailInteractor implements FillDetailInputBoundary{
             FetchedData updatedData = queryDAO.fillDetails(inputData);
             fillDetailPresenter.prepareSuccessView(updatedData);
         } catch (IOException e) {
-            // TODO Failed View
+            fillDetailPresenter.prepareFailView("Failed filling details for entry \"" + inputData.getTitle() + "\"");
         }
         if (starDAO.getStarredDataList().contains(inputData)){
             // If starDAO also contains the same fetched data,
@@ -32,7 +32,7 @@ public class FillDetailInteractor implements FillDetailInputBoundary{
             try {
                 starDAO.saveStarredData();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }

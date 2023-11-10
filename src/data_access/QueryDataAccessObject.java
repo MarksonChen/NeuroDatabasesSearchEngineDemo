@@ -26,12 +26,11 @@ public class QueryDataAccessObject implements QueryDataAccessInterface {
 
     @Override
     public List<FetchedData>[] queryAll(Query query, int resultsPerPage, int page) throws IOException {
-        Database[] databases = Database.values();
-        List<FetchedData>[] queryResults = new List[databases.length];
-        queryAllTotalResults = new int[databases.length];
-        for (int i = 0; i < databases.length; i++) {
-            queryResults[i] = queryOne(databases[i], query, resultsPerPage, page);
-            queryAllTotalResults[i] = queryDAO[Database.indexOf(databases[i])].getTotalResults();
+        List<FetchedData>[] queryResults = new List[Database.length];
+        queryAllTotalResults = new int[Database.length];
+        for (int i = 0; i < Database.length; i++) {
+            queryResults[i] = queryOne(Database.get(i), query, resultsPerPage, page);
+            queryAllTotalResults[i] = queryDAO[i].getTotalResults();
         }
         return queryResults;
     }

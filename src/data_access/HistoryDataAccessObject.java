@@ -1,8 +1,7 @@
 package data_access;
 
-import entity.FetchedData;
 import entity.Query;
-import use_case.clear_history.HistoryDataAccessInterface;
+import use_case.HistoryDataAccessInterface;
 
 import java.io.*;
 import java.nio.file.Files;

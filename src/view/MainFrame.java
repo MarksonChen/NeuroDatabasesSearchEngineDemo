@@ -1,7 +1,7 @@
 package view;
 
-import interface_adapter.view_model.MainFrameViewModel;
-import interface_adapter.view_model.MainFrameViewState;
+import view_model.MainFrameViewModel;
+import view_model.MainFrameViewState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         }
     }
 
-    public void start() {
+    public void init() {
         setPreferredSize(new Dimension(1200, 800));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();

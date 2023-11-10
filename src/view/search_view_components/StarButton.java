@@ -6,10 +6,14 @@ import java.awt.*;
 public class StarButton extends JButton {
     public StarButton(Boolean isStarred) {
         toggleStar(isStarred);
-        setPreferredSize(new Dimension(35, 35));
-//        setBorder(null);
+        setFont(UIManager.getFont( "h3.font" ));
+//        setForeground(Color.yellow);
+        int size = 25;
+        setPreferredSize(new Dimension(size, size));
+        setFocusPainted(false);
+        setBorder(null);
     }
     public void toggleStar(Boolean isStarred) {
-        setText(isStarred? "★":"☆");
+        setText(isStarred? "⭐":"☆");
     }
 }

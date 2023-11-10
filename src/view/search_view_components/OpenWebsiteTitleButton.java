@@ -1,6 +1,6 @@
 package view.search_view_components;
 
-import interface_adapter.open_website.OpenWebsiteController;
+import use_case.open_website.OpenWebsiteController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,9 @@ public class OpenWebsiteTitleButton extends JButton {
         setFont(new Font("Arial", Font.PLAIN, 18));
         setBorderPainted(false);
         setOpaque(false);
+        setBorder(null);
         setBackground(Color.white);
+        setRolloverEnabled(false);
         setToolTipText(URL);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 

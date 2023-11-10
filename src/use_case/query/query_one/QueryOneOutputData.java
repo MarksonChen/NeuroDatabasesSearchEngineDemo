@@ -6,7 +6,7 @@ import entity.Query;
 
 import java.util.List;
 
-public class QueryOneOutputData { // TODO are these really necessary
+public class QueryOneOutputData {
     private final Database database;
     private final List<FetchedData> fetchedData;
     private final List<Boolean> dataStarredStateList;

@@ -14,25 +14,34 @@ import java.util.List;
 import java.util.Map;
 
 public class Sandbox {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("resources/serializables/fetchedDataListArr.ser"));
-//        List<FetchedData>[]details = (List<FetchedData>[]) ois.readObject();
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("resources/serializables/NeuroMorphoFetchedData.ser"))) {
-//            oos.writeObject(details[0]);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("resources/serializables/NeuroElectroFetchedData.ser"))) {
-//            oos.writeObject(details[1]);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("resources/serializables/ModelDBFetchedData.ser"))) {
-//            oos.writeObject(details[2]);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("BoxLayout Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Create a panel with BoxLayout
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        // Add components at the top
+        panel.add(new JButton("Button 1"));
+        panel.add(new JButton("Button 2"));
+
+        // Component that should stretch
+        JTextArea textArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        panel.add(scrollPane);
+
+        // Invisible filler for space at the bottom
+        Component filler = Box.createVerticalGlue();
+        panel.add(filler);
+
+        // Add a component at the bottom
+        panel.add(new JButton("Button 3"));
+
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
-
 }

@@ -1,13 +1,10 @@
 package view;
 
-import interface_adapter.view_model.FrameManagerModel;
+import view_model.FrameManagerModel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FrameManager implements PropertyChangeListener {
