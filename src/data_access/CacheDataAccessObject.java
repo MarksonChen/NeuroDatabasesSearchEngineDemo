@@ -3,7 +3,6 @@ package data_access;
 import entity.FetchedData;
 import entity.Query;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 public class CacheDataAccessObject implements CacheDataAccessInterface {
     private Query currentQuery;
 
-    private List<List<FetchedData>>[] cachedData; // Pages x Results per page
+    private final List<List<FetchedData>>[] cachedData; // Pages x Results per page
     public CacheDataAccessObject(){
         cachedData = new List[Database.length];
         reset();
@@ -39,9 +38,8 @@ public class CacheDataAccessObject implements CacheDataAccessInterface {
     public void replaceData(FetchedData fetchedData){
         List<List<FetchedData>> cachedDataListList = cachedData[Database.indexOf(fetchedData.getDatabase())];
         for (List<FetchedData> cachedDataList: cachedDataListList){
-            for (int i = 0; i < cachedDataList.size(); i++) {
-                FetchedData cachedData = cachedDataList.get(i);
-                if (cachedData.equals(fetchedData)){
+            for (FetchedData cachedData : cachedDataList) {
+                if (cachedData.equals(fetchedData)) {
                     // two fetchedData are equal regardless if they have Map filled
                     // here, "equal" refers to "having the same id in the same database"
                     cachedData.setDetails(fetchedData.getDetails());

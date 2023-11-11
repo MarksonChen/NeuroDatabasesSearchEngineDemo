@@ -4,7 +4,6 @@ import entity.FetchedData;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 public interface StarDataAccessInterface {
     void toggleStar(FetchedData data);

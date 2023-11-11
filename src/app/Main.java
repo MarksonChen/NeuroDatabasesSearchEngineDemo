@@ -62,7 +62,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        HistoryDataAccessInterface historyDAO = null;
+        HistoryDataAccessInterface historyDAO;
         try {
             historyDAO = new HistoryDataAccessObject("resources/serializables/historyQueries.ser");
         } catch (IOException | ClassNotFoundException e) {

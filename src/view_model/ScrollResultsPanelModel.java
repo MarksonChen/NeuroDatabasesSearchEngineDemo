@@ -10,7 +10,7 @@ public class ScrollResultsPanelModel implements ObserverViewModel{
     public static final String REFRESH_DATA_INFO_PANEL = "Refresh Data Info Panel";
     public static final String REFRESH_STAR_STATES = "Refresh Star States";
     private final Database database;
-    private ScrollResultsPanelState state = new ScrollResultsPanelState();
+    private final ScrollResultsPanelState state = new ScrollResultsPanelState();
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

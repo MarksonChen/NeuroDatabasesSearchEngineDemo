@@ -21,10 +21,10 @@ public class QueryBar extends JPanel {
     private final SwitchResultsPanelController switchResultsPanelController;
     private final QueryAllController queryAllController;
     private final QueryOneController queryOneController;
-    private JButton switchViewButton;
-    private HintTextField searchField;
-    private JButton searchButton;
-    private JComboBox<String> databasesComboBox;
+    private final JButton switchViewButton;
+    private final HintTextField searchField;
+    private final JButton searchButton;
+    private final JComboBox<String> databasesComboBox;
 
     public QueryBar(SearchViewModel searchViewModel, SwitchViewController switchViewController, SwitchResultsPanelController switchResultsPanelController, QueryAllController queryAllController, QueryOneController queryOneController) {
         this.searchViewModel = searchViewModel;

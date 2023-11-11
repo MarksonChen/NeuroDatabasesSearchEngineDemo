@@ -1,17 +1,8 @@
 package sandbox;
 
 
-import data_access.Database;
-import entity.FetchedData;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Sandbox {
     public static void main(String[] args) {

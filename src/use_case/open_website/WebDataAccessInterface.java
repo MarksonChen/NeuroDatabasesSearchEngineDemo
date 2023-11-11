@@ -1,9 +1,5 @@
 package use_case.open_website;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 

@@ -18,7 +18,7 @@ public class FrontPageView extends JPanel {
 
         appTitle.addActionListener(evt -> {
             try {
-                openWebsiteController.execute(frontPageViewModel.TITLE_BUTTON_REDIRECT_URL);
+                openWebsiteController.execute(FrontPageViewModel.TITLE_BUTTON_REDIRECT_URL);
             } catch (Exception ignored) {
                 // It's fine if it can't be opened
             }

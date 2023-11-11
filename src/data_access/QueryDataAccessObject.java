@@ -9,8 +9,8 @@ import java.io.*;
 import java.util.*;
 
 public class QueryDataAccessObject implements QueryDataAccessInterface {
-    private DatabaseDataAcecssInterface[] queryDAO;
-    private CacheDataAccessInterface dataCacheDAO;
+    private final DatabaseDataAcecssInterface[] queryDAO;
+    private final CacheDataAccessInterface dataCacheDAO;
 
     private int queryOneTotalResults;
     private int[] queryAllTotalResults;

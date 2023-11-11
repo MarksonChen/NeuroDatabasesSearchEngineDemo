@@ -15,19 +15,15 @@ public class ResultPanel extends JPanel {
     private final JPanel dataInfoPanel;
     private final LinkedHashMap<String, Boolean> detailsDisplayed;
     private final StarButton starButton;
-    private JButton queryButton;
+    private final JButton queryButton;
 
     public ResultPanel(SearchViewModel searchViewModel, LinkedHashMap<String, Boolean> detailsDisplayed, FetchedData data, Boolean isStarred, FillDetailController fillDetailController, StarController starController, OpenWebsiteController openWebsiteController) {
         this.detailsDisplayed = detailsDisplayed;
         starButton = new StarButton(isStarred);
-        starButton.addActionListener(e -> {
-            starController.execute(data);
-        });
+        starButton.addActionListener(e -> starController.execute(data));
 
-        queryButton = new JButton(searchViewModel.QUERY_BUTTON_LABEL);
-        queryButton.addActionListener(e -> {
-            fillDetailController.execute(data);
-        });
+        queryButton = new JButton(SearchViewModel.QUERY_BUTTON_LABEL);
+        queryButton.addActionListener(e -> fillDetailController.execute(data));
 
         OpenWebsiteTitleButton titleButton = new OpenWebsiteTitleButton(data.getTitle(), data.getURL(), openWebsiteController);
 

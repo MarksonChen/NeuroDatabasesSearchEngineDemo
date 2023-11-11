@@ -1,11 +1,7 @@
 package view_model;
 
-import data_access.Database;
-import entity.FetchedData;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 public class ViewManagerModel {
 

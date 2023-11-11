@@ -24,7 +24,7 @@ public class StarredView extends JFrame implements PropertyChangeListener {
     private final FillDetailController fillDetailController;
     private final StarController starController;
     private final OpenWebsiteController openWebsiteController;
-    private JPanel contentPanel;
+    private final JPanel contentPanel;
     public StarredView(SearchViewModel searchViewModel, StarredViewModel starredViewModel, FillDetailController fillDetailController, StarController starController, OpenWebsiteController openWebsiteController) {
         this.searchViewModel = searchViewModel;
         this.starredViewModel = starredViewModel;

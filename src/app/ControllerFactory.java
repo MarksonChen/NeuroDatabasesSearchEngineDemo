@@ -157,7 +157,7 @@ public class ControllerFactory {
 
     LoadFromDAOController createLoadFromDAOController() {
         LoadFromDAOOutputBoundary loadFromDAOPresenter = new LoadFromDAOPresenter(resultsPanelModels, searchViewModel, starredViewModel, historyViewModel);
-        LoadFromDAOInputBoundary loadFromDAOInteractor = new LoadFromDAOInteractor(searchViewModel, loadFromDAOPresenter, queryDAO, starDAO, historyDAO);
+        LoadFromDAOInputBoundary loadFromDAOInteractor = new LoadFromDAOInteractor(loadFromDAOPresenter, queryDAO, starDAO, historyDAO);
         return new LoadFromDAOController(loadFromDAOInteractor);
     }
 

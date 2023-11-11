@@ -5,7 +5,6 @@ import entity.Query;
 import use_case.query.QueryDataAccessInterface;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -19,9 +18,9 @@ public class InMemoryQueryDataAccessObject implements QueryDataAccessInterface {
     // This is for test purpose only, so it assumes the Databases are
     // NeuroMorpho, NeuroElectro, and ModelDB and directly reads the FetchedData
     // from stored serialization files.
-    private List<FetchedData>[] fetchedDataListArr; // Read from ser file; same order as Database.values()
-    private List<FetchedData>[] unfilledDataListArr; // resembles actual data gotten, where NeuroElectro & ModelDB's data all have no details intially
-    private List<String>[] dataIDArr;
+    private final List<FetchedData>[] fetchedDataListArr; // Read from ser file; same order as Database.values()
+    private final List<FetchedData>[] unfilledDataListArr; // resembles actual data gotten, where NeuroElectro & ModelDB's data all have no details intially
+    private final List<String>[] dataIDArr;
     private Database lastQueryDatabase;
     public InMemoryQueryDataAccessObject(CacheDataAccessInterface dataCacheDAO, String serializableFilePath) throws IOException, ClassNotFoundException {
         this.dataCacheDAO = dataCacheDAO;

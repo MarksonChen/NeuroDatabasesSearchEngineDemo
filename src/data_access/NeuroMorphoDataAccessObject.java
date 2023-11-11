@@ -12,11 +12,11 @@ import java.util.*;
 public class NeuroMorphoDataAccessObject implements DatabaseDataAcecssInterface{
 
     private final WebDataAccessInterface webDAO;
-    private static Set<String> brainRegions = new HashSet<>();
-    private static Set<String> cellTypes = new HashSet<>();
-    private static boolean loaded = false;
+    private static final Set<String> brainRegions = new HashSet<>();
+    private static final Set<String> cellTypes = new HashSet<>();
+    private static final boolean loaded = false;
     private int totalResults;
-    private String[] entryKeys = {"species", "strain", "soma_surface", "volume", "reference doi"};
+    private final String[] entryKeys = {"species", "strain", "soma_surface", "volume", "reference doi"};
 
     public NeuroMorphoDataAccessObject(WebDataAccessInterface webDAO) {
         this.webDAO = webDAO;

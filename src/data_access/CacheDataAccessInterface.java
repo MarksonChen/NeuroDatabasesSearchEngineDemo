@@ -3,9 +3,7 @@ package data_access;
 import entity.FetchedData;
 import entity.Query;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.List;
 
 public interface CacheDataAccessInterface {

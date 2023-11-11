@@ -22,9 +22,10 @@ import java.util.List;
 public class ScrollResultsPanel extends JScrollPane implements PropertyChangeListener {
     private final SearchViewModel searchViewModel;
     private final ScrollResultsPanelModel model;
-    private JPanel contentPanel;
-    private JButton prevButton, nextButton;
-    private QueryOneController queryOneController;
+    private final JPanel contentPanel;
+    private final JButton prevButton;
+    private final JButton nextButton;
+    private final QueryOneController queryOneController;
     private final FillDetailController fillDetailController;
     private final StarController starController;
     private final OpenWebsiteController openWebsiteController;

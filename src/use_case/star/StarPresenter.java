@@ -25,7 +25,7 @@ public class StarPresenter implements StarOutputBoundary {
         } else {
             starredDataList.add(outputData);
         }
-        starredViewModel.firePropertyChanged(starredViewModel.STAR);
+        starredViewModel.firePropertyChanged(StarredViewModel.STAR);
 
         ScrollResultsPanelModel model = resultsPanelModels[Database.indexOf(outputData.getDatabase())];
         ScrollResultsPanelState state = model.getState();

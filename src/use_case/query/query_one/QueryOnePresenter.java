@@ -37,7 +37,7 @@ public class QueryOnePresenter implements QueryOneOutputBoundary {
         model.firePropertyChanged(ScrollResultsPanelModel.REFRESH_ALL);
 
         historyViewModel.getState().setHistoryQueryList(outputData.getHistoryQueryList());
-        historyViewModel.firePropertyChanged(historyViewModel.REFRESH);
+        historyViewModel.firePropertyChanged(HistoryViewModel.REFRESH);
     }
 
     @Override

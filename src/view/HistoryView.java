@@ -21,7 +21,7 @@ public class HistoryView extends JFrame implements PropertyChangeListener {
     private final SwitchViewController switchViewController;
     private final ReuseHistoryQueryController reuseHistoryQueryController;
     private final ClearHistoryController clearHistoryController;
-    private JPanel contentPanel;
+    private final JPanel contentPanel;
     public HistoryView(HistoryViewModel historyViewModel, SwitchViewController switchViewController, ReuseHistoryQueryController reuseHistoryQueryController, ClearHistoryController clearHistoryController) {
         this.historyViewModel = historyViewModel;
         this.switchViewController = switchViewController;
@@ -93,7 +93,7 @@ public class HistoryView extends JFrame implements PropertyChangeListener {
         repaint();
     }
 
-    private class HistoryQueryButton extends  JButton {
+    private static class HistoryQueryButton extends JButton {
         public HistoryQueryButton(Query query, ReuseHistoryQueryController reuseHistoryQueryController, SwitchViewController switchViewController) {
             super(query.getKeywords());
             this.addActionListener(e -> {

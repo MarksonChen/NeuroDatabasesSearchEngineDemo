@@ -34,8 +34,8 @@ public interface DatabaseDataAcecssInterface {
             }
         }
         List<String> results = new ArrayList<>(keywordsCount.keySet());
-        Collections.sort(results, Comparator.comparingInt(String::length));
-        Collections.sort(results, Comparator.comparing(keywordsCount::get).reversed());
+        results.sort(Comparator.comparingInt(String::length));
+        results.sort(Comparator.comparing(keywordsCount::get).reversed());
 
         return results;
     }
