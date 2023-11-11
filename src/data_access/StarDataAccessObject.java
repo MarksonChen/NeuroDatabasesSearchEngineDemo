@@ -20,9 +20,6 @@ public class StarDataAccessObject implements StarDataAccessInterface {
         } else {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(serializableFilePath));
             starredDataList = (ArrayList<FetchedData>) ois.readObject();
-//            starredDataList.stream().forEach(data -> {
-//                System.out.println(data.getId());
-//            });
         }
     }
 

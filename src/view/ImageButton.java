@@ -15,7 +15,6 @@ public class ImageButton extends JButton {
         setFocusPainted(false);
         setRolloverEnabled(false);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//        setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         setBackground(FrontPageViewModel.ACCENT_COLOR);
 
         // Draw a border when the mouse hovers above the image button

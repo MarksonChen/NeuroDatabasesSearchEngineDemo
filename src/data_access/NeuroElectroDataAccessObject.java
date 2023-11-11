@@ -27,7 +27,6 @@ public class NeuroElectroDataAccessObject extends PreloadedDatabaseDataAccessObj
             throw new RuntimeException("IT IS NULL");
         }
         String response = webDAO.getResponse("https://neuroelectro.org/api/1/nes/?n=" + id);
-//        System.out.println("https://neuroelectro.org/api/1/nes/?n=" + id);
         JSONArray propertiesArr = new JSONObject(response).getJSONArray("objects");
         Map<String, Integer> propertiesIndex = getPropertiesIndex(propertiesArr);
         for (String property : entryKeys) {
@@ -83,7 +82,6 @@ public class NeuroElectroDataAccessObject extends PreloadedDatabaseDataAccessObj
             JSONObject neuronEntry = neuronsArray.getJSONObject(i);
             String id = String.valueOf(neuronEntry.getInt("id"));
             preloadedEntries.put(neuronEntry.getString("name"), id);
-//            System.out.println(neuronEntry.getString("name") + ":" + id);
         }
     }
 }

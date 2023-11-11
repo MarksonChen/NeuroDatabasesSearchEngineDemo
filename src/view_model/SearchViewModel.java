@@ -25,10 +25,6 @@ public class SearchViewModel implements ObserverViewModel{
         return state;
     }
 
-//    public void setState(SearchViewState state) {
-//        this.state = state;
-//    }
-
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     @Override
     public void firePropertyChanged(String propertyName) {

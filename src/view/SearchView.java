@@ -71,10 +71,9 @@ public class SearchView extends JPanel implements PropertyChangeListener {
                 cardLayout.show(resultsPanel, state.getDatabaseOption());
                 optionBar.makePanels();
             }
-            case SearchViewModel.QUERY_ENTERED -> {
+            case SearchViewModel.QUERY_ENTERED ->
                 queryBar.setSearchTextFieldText(state.getSearchFieldText());
-                queryBar.focusOntoSearchTextField();
-            }
+
             case SearchViewModel.REFRESH_OPTION_BAR -> optionBar.makePanels();
             case SearchViewModel.ERROR -> JOptionPane.showMessageDialog(this, state.getErrorMessage());
         }

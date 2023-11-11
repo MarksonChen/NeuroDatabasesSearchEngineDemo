@@ -43,7 +43,6 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
         contentPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
 
         setPreferredSize(new Dimension(650, 700));
-//        getVerticalScrollBar().setUnitIncrement(10);
         setViewportView(contentPanel);
         fixScrollSpeed(this);
 

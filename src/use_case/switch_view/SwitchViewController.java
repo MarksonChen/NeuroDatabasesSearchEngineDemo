@@ -1,7 +1,5 @@
 package use_case.switch_view;
 
-import use_case.switch_view.SwitchViewInputBoundary;
-
 public class SwitchViewController {
     private final SwitchViewInputBoundary switchViewInteractor;
 

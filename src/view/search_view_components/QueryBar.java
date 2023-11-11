@@ -22,7 +22,7 @@ public class QueryBar extends JPanel {
     private final QueryAllController queryAllController;
     private final QueryOneController queryOneController;
     private JButton switchViewButton;
-    private JTextField searchField;
+    private HintTextField searchField;
     private JButton searchButton;
     private JComboBox<String> databasesComboBox;
 
@@ -34,9 +34,9 @@ public class QueryBar extends JPanel {
         this.queryOneController = queryOneController;
         switchViewButton = new JButton("ᐊ"); // or ❮
         switchViewButton.setBorder(null);
+        switchViewButton.setFocusPainted(false);
         switchViewButton.setPreferredSize(new Dimension(25, 25));
 
-//        searchField = new JTextField(30);
         searchField = new HintTextField(SearchViewModel.SEARCH_FIELD_HINT, 40);
         searchButton = new ImageButton(SearchViewModel.SEARCH_BUTTON_IMAGE_PATH, SearchViewModel.SEARCH_BUTTON_IMAGE_SCALE);
 
@@ -53,7 +53,6 @@ public class QueryBar extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         setBackground(SearchViewModel.BACKGROUND_COLOR);
         add(switchViewButton);
-//        add(new JLabel("Search:"));
         add(searchField);
         add(searchButton);
         add(databasesComboBox);
@@ -95,10 +94,6 @@ public class QueryBar extends JPanel {
             // The option must matches one of the databases since we directly
             // referenced the names of all databases in creating the combo box
         }
-    }
-
-    public void focusOntoSearchTextField() {
-        searchField.requestFocusInWindow();
     }
 
     public void setSearchTextFieldText(String searchFieldText) {

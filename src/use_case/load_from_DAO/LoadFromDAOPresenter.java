@@ -50,15 +50,4 @@ public class LoadFromDAOPresenter implements LoadFromDAOOutputBoundary {
         }
         return mapArr;
     }
-
-//    private boolean[][] mapToTrue(String[][] entryKeysArr) {
-//        boolean[][] arr = new boolean[entryKeysArr.length][];
-//        for (int i = 0; i < entryKeysArr.length; i++) {
-////            arr[i] = Arrays.stream(entryKeysArr[i]).map(s -> true).toArray(Boolean[]::new);
-//            // This cool stream code unfortunately does not work because there is no way to collect to boolean[]
-//            arr[i] = new boolean[entryKeysArr[i].length];
-//            Arrays.fill(arr[i], true);
-//        }
-//        return arr;
-//    }
 }

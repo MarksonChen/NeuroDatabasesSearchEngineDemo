@@ -25,7 +25,6 @@ public class ResultPanel extends JPanel {
         });
 
         queryButton = new JButton(searchViewModel.QUERY_BUTTON_LABEL);
-//        queryButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         queryButton.addActionListener(e -> {
             fillDetailController.execute(data);
         });
@@ -33,8 +32,6 @@ public class ResultPanel extends JPanel {
         OpenWebsiteTitleButton titleButton = new OpenWebsiteTitleButton(data.getTitle(), data.getURL(), openWebsiteController);
 
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
-//        titlePanel.setLayout(new BorderLayout());
-//        titlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         titlePanel.setComponentOrientation(
                 ComponentOrientation.LEFT_TO_RIGHT);
 
@@ -53,7 +50,6 @@ public class ResultPanel extends JPanel {
         setBackground(SearchViewModel.BACKGROUND_COLOR);
         add(titlePanel);
         add(dataInfoPanel);
-//        setBorder(BorderFactory.createRaisedBevelBorder());
     }
 
     public void updateDataInfoPanel(FetchedData data) {
@@ -89,16 +85,6 @@ public class ResultPanel extends JPanel {
             }
         }
     }
-
-//    private JTextArea createParagraphTextArea(String string) {
-//        JTextArea textArea = new JTextArea(string);
-//        textArea.setWrapStyleWord(true);
-//        textArea.setLineWrap(true);
-////        textArea.setRows(rows);
-//        textArea.setEditable(false);
-//        textArea.setBackground(SearchViewModel.BACKGROUND_COLOR);
-//        return textArea;
-//    }
 
     public void toggleStar(Boolean isStarred) {
         starButton.toggleStar(isStarred);

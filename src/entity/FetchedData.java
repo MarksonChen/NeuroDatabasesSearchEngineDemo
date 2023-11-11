@@ -16,8 +16,7 @@ public class FetchedData implements Serializable {
     // We require this to be LinkedHashMap because it preserves insertion order.
     // Many codes depend on this property, so we make this a hard requirement.
     /*
-    * TODO: justify design decision
-    * We discussed with out TA and he agreed that this is
+    * We discussed this with our TA, and we agreed that this is
     * the design decision that satisfies OCP the most.
     * */
 

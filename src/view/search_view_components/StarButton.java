@@ -7,7 +7,6 @@ public class StarButton extends JButton {
     public StarButton(Boolean isStarred) {
         toggleStar(isStarred);
         setFont(UIManager.getFont( "h3.font" ));
-//        setForeground(Color.yellow);
         int size = 25;
         setPreferredSize(new Dimension(size, size));
         setFocusPainted(false);
