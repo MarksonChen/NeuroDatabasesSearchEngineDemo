@@ -44,7 +44,9 @@ public class ResultPanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBorder(BorderFactory.createEmptyBorder(13, 10, 10, 10));
         add(titlePanel);
+        add(Box.createVerticalStrut(8));
         add(dataInfoPanel);
     }
 

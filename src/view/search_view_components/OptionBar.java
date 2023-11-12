@@ -2,10 +2,12 @@ package view.search_view_components;
 
 import data_access.Database;
 import use_case.toggle_display_option.ToggleDisplayOptionController;
+import view_model.MainFrameViewModel;
 import view_model.SearchViewModel;
 import view_model.SearchViewState;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,7 +22,7 @@ public class OptionBar extends JPanel {
         this.searchViewModel = searchViewModel;
         setLayout(new GridBagLayout());
         setBackground(SearchViewModel.BACKGROUND_COLOR);
-        setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        setBorder(BorderFactory.createEmptyBorder(5, 15, 20, 10));
         // The panels are not made until the LinkedHashMap<String, Boolean>[] entryDisplayedMap
         // is passed from DAO by the "load from DAO" use case
     }
@@ -51,7 +53,7 @@ public class OptionBar extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 1;
         JPanel filler = new JPanel();
-        filler.setBackground(SearchViewModel.BACKGROUND_COLOR );
+        filler.setBackground(SearchViewModel.BACKGROUND_COLOR);
         add(filler, gbc);
         // This panel will stretch as much as possible
         // so that the databasePanels are stacked from the top
@@ -76,7 +78,10 @@ public class OptionBar extends JPanel {
             databasePanel.add(entryKeyButton);
         }
 
-        databasePanel.setBorder(BorderFactory.createTitledBorder(Database.getDatabaseNames()[databaseIndex]));
+        TitledBorder border = BorderFactory.createTitledBorder(Database.getDatabaseNames()[databaseIndex]);
+//        border.setTitleFont(border.getTitleFont().deriveFont(Font.BOLD));
+//        border.setTitleColor(MainFrameViewModel.TITLE_COLOR);
+        databasePanel.setBorder(border);
         return databasePanel;
     }
 }

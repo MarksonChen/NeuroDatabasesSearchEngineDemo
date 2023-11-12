@@ -1,6 +1,8 @@
 package view.search_view_components;
 
 import use_case.open_website.OpenWebsiteController;
+import view_model.MainFrameViewModel;
+import view_model.SearchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +14,11 @@ public class OpenWebsiteTitleButton extends JButton {
         super();
         setText(createHTMLText(title, false));
         addActionListener(e -> openWebsiteController.execute(URL));
-        setForeground(new Color(24, 14, 164));
         setFont(new Font("Arial", Font.PLAIN, 18));
         setBorderPainted(false);
         setOpaque(false);
         setBorder(null);
-        setBackground(Color.white);
+        setBackground(SearchViewModel.BACKGROUND_COLOR);
         setRolloverEnabled(false);
         setToolTipText(URL);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -38,8 +39,11 @@ public class OpenWebsiteTitleButton extends JButton {
     }
 
     private static String createHTMLText(String title, boolean underlined) {
-        return "<html><span style='color: blue;"
-                + (underlined? "text-decoration: underline;" : "")
-                + "'>" + title + "</span></html>";
+        Color c = MainFrameViewModel.TITLE_COLOR;
+        return String.format("<html><span style='color: rgb(%d, %d, %d); font-family: Helventica; font-weight: 500; %s'>%s</span></html>",
+                c.getRed(), c.getGreen(), c.getBlue(), (underlined? "text-decoration: underline" : ""), title);
+//        return "<html><span style='color: rgb(98, 155, 225)"
+//                + (underlined? ";text-decoration: underline" : "")
+//                + "'>" + title + "</span></html>";
     }
 }

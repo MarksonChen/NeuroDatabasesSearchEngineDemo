@@ -41,7 +41,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
         cardLayout = new CardLayout();
         resultsPanel.setLayout(cardLayout);
         resultsPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
-        resultsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
+        resultsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 20));
 
         singleViewResultsPanelsMap = new LinkedHashMap<>();
         for (int i = 0; i < tabbedViewResultPanels.length; i++) {

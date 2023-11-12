@@ -1,6 +1,9 @@
 package app;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import data_access.*;
 import use_case.clear_history.ClearHistoryController;
 import use_case.fill_detail.FillDetailController;
@@ -134,10 +137,11 @@ public class Main {
 
     private static void configureUI() {
         FlatLightLaf.setup();
+        UIManager.put("TextComponent.arc", 4);
         UIManager.put("ScrollBar.width", 13);
         UIManager.put("TabbedPane.showTabSeparators", true);
         UIManager.getLookAndFeelDefaults()
-                .put("defaultFont", new Font("Arial", Font.PLAIN, 16));
+                .put("defaultFont", new Font("Helventica", Font.PLAIN, 15));
 //        System.setProperty("flatlaf.uiScale", "1.5");
     }
 

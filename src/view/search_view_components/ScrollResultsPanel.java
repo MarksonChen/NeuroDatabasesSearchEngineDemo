@@ -106,7 +106,7 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
             if (currentPage == 1) {
                 JLabel resultsFetchedLabel = new JLabel(totalResults + " results fetched");
                 resultsFetchedLabel.setAlignmentX(LEFT_ALIGNMENT);
-                resultsFetchedLabel.setBorder(new EmptyBorder(5,5,5,5));
+                resultsFetchedLabel.setBorder(new EmptyBorder(7,20,7,10));
                 contentPanel.add(resultsFetchedLabel);
                 contentPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
             }
@@ -115,9 +115,7 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
             for (int i = 0; i < fetchedData.size(); i++) {
                 ResultPanel resultPanel = new ResultPanel(searchViewModel, detailsDisplayed, fetchedData.get(i), dataIsStarredList.get(i), fillDetailController, starController, openWebsiteController);
                 resultPanels[i] = resultPanel;
-                contentPanel.add(Box.createVerticalStrut(5));
                 contentPanel.add(resultPanel);
-                contentPanel.add(Box.createVerticalStrut(5));
                 contentPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
             }
             int totalPage = (int) Math.ceil((double) totalResults / resultsPerPage);

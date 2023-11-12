@@ -70,9 +70,7 @@ public class StarredView extends JFrame implements PropertyChangeListener {
             FetchedData data = starredDataList.get(i);
             int databaseIndex = Database.indexOf(data.getDatabase());
             ResultPanel resultPanel = new ResultPanel(searchViewModel, detailsDisplayed[databaseIndex], data, true, fillDetailController, starController, openWebsiteController);
-            contentPanel.add(Box.createVerticalStrut(5));
             contentPanel.add(resultPanel);
-            contentPanel.add(Box.createVerticalStrut(5));
             contentPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
         }
         revalidate();
