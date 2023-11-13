@@ -1,9 +1,6 @@
 package app;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import data_access.*;
 import use_case.clear_history.ClearHistoryController;
 import use_case.fill_detail.FillDetailController;

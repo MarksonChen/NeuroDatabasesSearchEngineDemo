@@ -1,6 +1,5 @@
 package view;
 
-import view_model.FrontPageViewModel;
 import view_model.MainFrameViewModel;
 
 import javax.swing.*;

@@ -2,7 +2,6 @@ package view.search_view_components;
 
 import use_case.open_website.OpenWebsiteController;
 import view_model.MainFrameViewModel;
-import view_model.SearchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ public class OpenWebsiteTitleButton extends JButton {
         setBorderPainted(false);
         setOpaque(false);
         setBorder(null);
-        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         setRolloverEnabled(false);
         setToolTipText(URL);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

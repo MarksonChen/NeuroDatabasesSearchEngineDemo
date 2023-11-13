@@ -6,6 +6,7 @@ import use_case.query.query_one.QueryOneController;
 import use_case.switch_results_panel.SwitchResultsPanelController;
 import use_case.switch_view.SwitchViewController;
 import use_case.toggle_display_option.ToggleDisplayOptionController;
+import view_model.MainFrameViewModel;
 import view_model.SearchViewModel;
 import view_model.SearchViewState;
 import view.search_view_components.*;
@@ -40,7 +41,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
 
         cardLayout = new CardLayout();
         resultsPanel.setLayout(cardLayout);
-        resultsPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        resultsPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         resultsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 20));
 
         singleViewResultsPanelsMap = new LinkedHashMap<>();
@@ -51,7 +52,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
         }
 
         tabbedView = new JTabbedPane();
-        tabbedView.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        tabbedView.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         for (int i = 0; i < Database.length; i++) {
             tabbedView.addTab(Database.get(i).name(), tabbedViewResultPanels[i]);
         }

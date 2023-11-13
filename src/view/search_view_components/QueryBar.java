@@ -5,6 +5,7 @@ import use_case.query.query_all.QueryAllController;
 import use_case.query.query_one.QueryOneController;
 import use_case.switch_results_panel.SwitchResultsPanelController;
 import use_case.switch_view.SwitchViewController;
+import view_model.MainFrameViewModel;
 import view_model.SearchViewModel;
 import view_model.SearchViewState;
 import view_model.FrontPageViewModel;
@@ -51,7 +52,7 @@ public class QueryBar extends JPanel {
 
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
-        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         add(switchViewButton);
         add(searchField);
         add(searchButton);

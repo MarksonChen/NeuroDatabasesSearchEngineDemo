@@ -5,6 +5,7 @@ import entity.FetchedData;
 import use_case.fill_detail.FillDetailController;
 import use_case.open_website.OpenWebsiteController;
 import use_case.star.StarController;
+import view_model.MainFrameViewModel;
 import view_model.SearchViewModel;
 import view_model.StarredViewModel;
 import view.search_view_components.ResultPanel;
@@ -35,7 +36,7 @@ public class StarredView extends JFrame implements PropertyChangeListener {
 
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        contentPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         JScrollPane scrollPane = new JScrollPane(contentPanel);
         fixScrollSpeed(scrollPane);
         add(scrollPane);

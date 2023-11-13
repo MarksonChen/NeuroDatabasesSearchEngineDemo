@@ -21,7 +21,7 @@ public class OptionBar extends JPanel {
         this.toggleDisplayOptionController = toggleDisplayOptionController;
         this.searchViewModel = searchViewModel;
         setLayout(new GridBagLayout());
-        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         setBorder(BorderFactory.createEmptyBorder(5, 15, 20, 10));
         // The panels are not made until the LinkedHashMap<String, Boolean>[] entryDisplayedMap
         // is passed from DAO by the "load from DAO" use case
@@ -53,7 +53,7 @@ public class OptionBar extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 1;
         JPanel filler = new JPanel();
-        filler.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        filler.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         add(filler, gbc);
         // This panel will stretch as much as possible
         // so that the databasePanels are stacked from the top
@@ -65,7 +65,7 @@ public class OptionBar extends JPanel {
     private JPanel makePanel(int databaseIndex) {
         JPanel databasePanel = new JPanel();
         databasePanel.setLayout(new BoxLayout(databasePanel, BoxLayout.Y_AXIS));
-        databasePanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        databasePanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
 
         SearchViewState state = searchViewModel.getState();
         LinkedHashMap<String, Boolean>[] entryDisplayedMap = state.getDetailEntryDisplayed();

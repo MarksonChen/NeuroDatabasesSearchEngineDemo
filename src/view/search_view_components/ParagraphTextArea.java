@@ -1,6 +1,6 @@
 package view.search_view_components;
 
-import view_model.SearchViewModel;
+import view_model.MainFrameViewModel;
 
 import javax.swing.*;
 
@@ -11,6 +11,6 @@ public class ParagraphTextArea extends JTextArea {
         setLineWrap(true);
 //        setRows(rows);
         setEditable(false);
-        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBackground(MainFrameViewModel.BACKGROUND_COLOR);
     }
 }

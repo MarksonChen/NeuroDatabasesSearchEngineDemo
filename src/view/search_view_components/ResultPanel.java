@@ -4,6 +4,7 @@ import entity.FetchedData;
 import use_case.fill_detail.FillDetailController;
 import use_case.open_website.OpenWebsiteController;
 import use_case.star.StarController;
+import view_model.MainFrameViewModel;
 import view_model.SearchViewModel;
 
 import javax.swing.*;
@@ -31,19 +32,19 @@ public class ResultPanel extends JPanel {
         titlePanel.setComponentOrientation(
                 ComponentOrientation.LEFT_TO_RIGHT);
 
-        titlePanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        titlePanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         titlePanel.add(starButton);
         titlePanel.add(titleButton);
         titlePanel.setAlignmentX(LEFT_ALIGNMENT);
 
         dataInfoPanel = new JPanel();
-        dataInfoPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        dataInfoPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         dataInfoPanel.setLayout(new BoxLayout(dataInfoPanel, BoxLayout.PAGE_AXIS));
         dataInfoPanel.setAlignmentX(LEFT_ALIGNMENT);
         updateDataInfoPanel(data);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(SearchViewModel.BACKGROUND_COLOR);
+        setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         setBorder(BorderFactory.createEmptyBorder(13, 10, 10, 10));
         add(titlePanel);
         add(Box.createVerticalStrut(8));
@@ -65,7 +66,7 @@ public class ResultPanel extends JPanel {
         // The only way to add inset to a JButton inside a BorderLayout
         // would be to place it in another JPanel and add insets
         JPanel queryButtonPanel = new JPanel();
-        queryButtonPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        queryButtonPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         queryButtonPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5,35,5,0);

@@ -6,6 +6,7 @@ import use_case.fill_detail.FillDetailController;
 import use_case.open_website.OpenWebsiteController;
 import use_case.query.query_one.QueryOneController;
 import use_case.star.StarController;
+import view_model.MainFrameViewModel;
 import view_model.ScrollResultsPanelModel;
 import view_model.ScrollResultsPanelState;
 import view_model.SearchViewModel;
@@ -41,7 +42,7 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
         this.openWebsiteController = openWebsiteController;
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        contentPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
 
         setPreferredSize(new Dimension(650, 700));
         setViewportView(contentPanel);
@@ -127,7 +128,7 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
         }
 
         JPanel filler = new JPanel();
-        filler.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        filler.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         filler.setAlignmentX(LEFT_ALIGNMENT);
         filler.setMaximumSize(new Dimension(20, Integer.MAX_VALUE));
         contentPanel.add(filler);
@@ -149,7 +150,7 @@ public class ScrollResultsPanel extends JScrollPane implements PropertyChangeLis
         buttonPanel.add(nextButton);
 
         buttonPanel.setPreferredSize(new Dimension(650, 40));
-        buttonPanel.setBackground(SearchViewModel.BACKGROUND_COLOR);
+        buttonPanel.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         return buttonPanel;
     }
