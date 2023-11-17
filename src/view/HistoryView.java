@@ -20,13 +20,11 @@ public class HistoryView extends JFrame implements PropertyChangeListener {
     private final HistoryViewModel historyViewModel;
     private final SwitchViewController switchViewController;
     private final ReuseHistoryQueryController reuseHistoryQueryController;
-    private final ClearHistoryController clearHistoryController;
     private final JPanel contentPanel;
     public HistoryView(HistoryViewModel historyViewModel, SwitchViewController switchViewController, ReuseHistoryQueryController reuseHistoryQueryController, ClearHistoryController clearHistoryController) {
         this.historyViewModel = historyViewModel;
         this.switchViewController = switchViewController;
         this.reuseHistoryQueryController = reuseHistoryQueryController;
-        this.clearHistoryController = clearHistoryController;
         historyViewModel.addPropertyChangeListener(this);
         setPreferredSize(new Dimension(890, 650));
         setDefaultCloseOperation(HIDE_ON_CLOSE);

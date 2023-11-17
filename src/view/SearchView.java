@@ -18,14 +18,13 @@ import java.beans.PropertyChangeListener;
 import java.util.LinkedHashMap;
 
 public class SearchView extends JPanel implements PropertyChangeListener {
-    private final JTabbedPane tabbedView;
-    LinkedHashMap<String, ScrollResultsPanel> singleViewResultsPanelsMap;
+    final LinkedHashMap<String, ScrollResultsPanel> singleViewResultsPanelsMap;
     // A LinkedHashMap is required, so it can be iterated in a fixed order
     private final QueryBar queryBar;
     private final OptionBar optionBar;
     private final JPanel resultsPanel;
     private final CardLayout cardLayout;
-    SearchViewModel searchViewModel;
+    final SearchViewModel searchViewModel;
 
     public SearchView(ScrollResultsPanel[] tabbedViewResultPanels, ScrollResultsPanel[] singleViewResultPanels,
                       SearchViewModel searchViewModel, SwitchViewController switchViewController,
@@ -51,7 +50,7 @@ public class SearchView extends JPanel implements PropertyChangeListener {
             resultsPanel.add(singleViewResultPanels[i], databaseName);
         }
 
-        tabbedView = new JTabbedPane();
+        JTabbedPane tabbedView = new JTabbedPane();
         tabbedView.setBackground(MainFrameViewModel.BACKGROUND_COLOR);
         for (int i = 0; i < Database.length; i++) {
             tabbedView.addTab(Database.get(i).name(), tabbedViewResultPanels[i]);

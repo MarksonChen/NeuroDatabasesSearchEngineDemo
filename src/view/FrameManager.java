@@ -8,13 +8,11 @@ import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 public class FrameManager implements PropertyChangeListener {
-    private final FrameManagerModel frameManagerModel;
     private final Map<String, JFrame> frames;
 
     public FrameManager(FrameManagerModel frameManagerModel, Map<String, JFrame> frames) {
-        this.frameManagerModel = frameManagerModel;
         this.frames = frames;
-        this.frameManagerModel.addPropertyChangeListener(this);
+        frameManagerModel.addPropertyChangeListener(this);
     }
 
     @Override

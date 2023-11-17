@@ -46,4 +46,10 @@ public class HistoryDataAccessObject implements HistoryDataAccessInterface {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serializableFilePath));
         oos.writeObject(historyQueryList);
     }
+
+    @Override
+    public void clear() throws IOException {
+        historyQueryList.clear();
+        saveToFile();
+    }
 }

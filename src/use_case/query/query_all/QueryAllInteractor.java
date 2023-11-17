@@ -31,17 +31,15 @@ public class QueryAllInteractor implements QueryAllInputBoundary {
             return;
         }
 
-        historyDAO.add(query);
         try {
+            historyDAO.add(query);
             historyDAO.saveToFile();
-        } catch (IOException e) {
-            e.printStackTrace(); // No need to push an alert if this automatic process is not working
-        }
-
-        try {
             List<FetchedData>[] fetchedData = queryDAO.queryAll(query, inputData.getResultsPerPage(), 1);
             List<Boolean>[] starredStateListArr = starDAO.checkIfDataStarred(fetchedData);
-            QueryAllOutputData outputData = new QueryAllOutputData(keywords, fetchedData, starredStateListArr, historyDAO.getHistoryQueryList(), queryDAO.getQueryAllTotalResults());
+            List<Query> historyQueryList = historyDAO.getHistoryQueryList();
+            int[] queryAllTotalResults = queryDAO.getQueryAllTotalResults();
+
+            QueryAllOutputData outputData = new QueryAllOutputData(keywords, fetchedData, starredStateListArr, historyQueryList, queryAllTotalResults);
             queryAllPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
             queryAllPresenter.prepareFailView("An error occured while fetching query for \"" + keywords + "\"");

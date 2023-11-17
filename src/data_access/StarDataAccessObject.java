@@ -59,4 +59,10 @@ public class StarDataAccessObject implements StarDataAccessInterface {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serializableFilePath));
         oos.writeObject(starredDataList);
     }
+
+    @Override
+    public void clear() throws IOException {
+        starredDataList.clear();
+        saveStarredData();
+    }
 }
