@@ -114,7 +114,7 @@ public class ControllerFactory {
     }
 
     OpenFrameController createOpenFrameController() {
-        OpenFrameOutputBoundary openFramePresenter = new OpenFramePresenter(frameManagerModel, starredViewModel);
+        OpenFrameOutputBoundary openFramePresenter = new OpenFramePresenter(frameManagerModel, starredViewModel, historyViewModel);
         OpenFrameInputBoundary openFrameInteractor = new OpenFrameInteractor(openFramePresenter);
         return new OpenFrameController(openFrameInteractor);
     }
