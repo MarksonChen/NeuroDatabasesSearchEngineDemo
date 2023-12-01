@@ -3,7 +3,7 @@ package view_model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ViewManagerModel {
+public class ViewManagerModel implements ObserverViewModel{
 
     private String activeViewName;
 
@@ -20,6 +20,9 @@ public class ViewManagerModel {
     public void firePropertyChanged() {
         support.firePropertyChange("view", null, this.activeViewName);
     }
+
+    @Override
+    public void firePropertyChanged(String propertyName) { }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);

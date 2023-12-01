@@ -17,6 +17,8 @@ public class SearchViewModel implements ObserverViewModel{
     public static final double SEARCH_BUTTON_IMAGE_SCALE = 0.04;
     public static final String PREV_BUTTON_LABEL = "<Previous";
     public static final String NEXT_BUTTON_LABEL = "Next>";
+    public static final String BACK_BUTTON_IMAGE_PATH = "/icons/backArrow.png";
+    public static final double BACK_BUTTON_IMAGE_SCALE = 0.10;
     private final SearchViewState state = new SearchViewState();
 
     public SearchViewState getState() {

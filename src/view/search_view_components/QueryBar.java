@@ -33,7 +33,7 @@ public class QueryBar extends JPanel {
         this.switchResultsPanelController = switchResultsPanelController;
         this.queryAllController = queryAllController;
         this.queryOneController = queryOneController;
-        switchViewButton = new JButton("ᐊ"); // or ❮
+        switchViewButton = new ImageButton(SearchViewModel.BACK_BUTTON_IMAGE_PATH, SearchViewModel.BACK_BUTTON_IMAGE_SCALE); // or ❮
         switchViewButton.setBorder(null);
         switchViewButton.setFocusPainted(false);
         switchViewButton.setPreferredSize(new Dimension(25, 25));
