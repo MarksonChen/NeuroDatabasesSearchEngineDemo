@@ -12,6 +12,8 @@ import view_model.FrontPageViewModel;
 import view.ImageButton;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -63,20 +65,34 @@ public class QueryBar extends JPanel {
                 switchViewController.execute(FrontPageViewModel.VIEW_NAME));
         searchButton.addActionListener(e -> performSearch(searchViewModel, queryAllController, queryOneController));
         searchField.addActionListener(e -> performSearch(searchViewModel, queryAllController, queryOneController));
-        searchField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        SearchViewState currentState = searchViewModel.getState();
-                        String text = searchField.getText() + e.getKeyChar();
-                        currentState.setSearchFieldText(text);
-//                        searchViewModel.setState(currentState);
-                    }
-                    @Override
-                    public void keyPressed(KeyEvent e) { }
-                    @Override
-                    public void keyReleased(KeyEvent e) { }
-                });
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                searchViewModel.getState()
+                        .setSearchFieldText(searchField.getText());
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                searchViewModel.getState()
+                        .setSearchFieldText(searchField.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {}
+        });
+//        searchField.addKeyListener(
+//                new KeyListener() {
+//                    @Override
+//                    public void keyTyped(KeyEvent e) {
+//                        SearchViewState currentState = searchViewModel.getState();
+//                        String text = searchField.getText() + e.getKeyChar();
+//                        currentState.setSearchFieldText(text);
+////                        searchViewModel.setState(currentState);
+//                    }
+//                    @Override
+//                    public void keyPressed(KeyEvent e) { }
+//                    @Override
+//                    public void keyReleased(KeyEvent e) { }
+//                });
         databasesComboBox.addActionListener(e -> {
             SearchViewState currentState = searchViewModel.getState();
             String databaseOption = (String) databasesComboBox.getSelectedItem();

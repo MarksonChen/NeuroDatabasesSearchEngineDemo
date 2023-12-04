@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-class HintTextField extends JTextField implements FocusListener {
+public class HintTextField extends JTextField implements FocusListener {
     // Code from https://stackoverflow.com/questions/1738966/java-jtextfield-with-input-hint
     // Used to create hinted text field in Query Bar
     private final String hint;
